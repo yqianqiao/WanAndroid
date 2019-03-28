@@ -4,7 +4,19 @@ import android.content.Context
 import android.net.ConnectivityManager
 
 object NetWorkUtil {
-
+    /**
+     * check NetworkAvailable
+     *
+     * @param context
+     * @return
+     */
+    @JvmStatic
+    fun isNetworkAvailable(context: Context): Boolean {
+        val manager = context.applicationContext.getSystemService(
+                Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val info = manager.activeNetworkInfo
+        return !(null == info || !info.isAvailable)
+    }
 
     /**
      * 判断是否有网络连接
