@@ -1,12 +1,22 @@
 package youxuntianxiaapp.huimee.com.wanandroid
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
+import youxuntianxiaapp.huimee.com.wanandroid.base.BaseMvpActivity
+import youxuntianxiaapp.huimee.com.wanandroid.mvp.contract.MainContract
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>() {
+    override fun attachLayoutRes() = R.layout.activity_main
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun initData() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun start() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun createPresenter(): MainContract.Presenter {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
 }
