@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATED_IDENTITY_EQUALS")
+
 package youxuntianxiaapp.huimee.com.wanandroid.utils
 
 import android.content.Context
@@ -68,8 +70,8 @@ object CommonUtil {
 
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         val arr = arrayOf("mCurRootView", "mServedView", "mNextServedView")
-        var field: Field? = null
-        var objGet: Any? = null
+        var field: Field?
+        var objGet: Any?
         for (i in arr.indices) {
             val param = arr[i]
             try {
@@ -103,9 +105,9 @@ object CommonUtil {
         var reader: BufferedReader? = null
         try {
             reader = BufferedReader(FileReader("/proc/$pid/cmdline"))
-            var processName = reader!!.readLine()
+            var processName = reader.readLine()
             if (!TextUtils.isEmpty(processName)) {
-                processName = processName.trim({ it <= ' ' })
+                processName = processName.trim { it <= ' ' }
             }
             return processName
         } catch (throwable: Throwable) {

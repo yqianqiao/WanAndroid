@@ -59,11 +59,16 @@ ext {
             "agentweb"              : 'com.just.agentweb:agentweb:4.0.2',
             "multidex"              : 'com.android.support:multidex:1.0.3',
             "flow-layout"           : 'com.hyman:flowlayout-lib:1.1.2',
+            "eventbus"              : 'org.greenrobot:eventbus:3.1.1',
             "swipeback"             : 'com.cxz:swipeback:1.0.1',
             "material-dialogs"      : 'com.afollestad.material-dialogs:commons:0.9.4.4',
             "logger"                : 'com.orhanobut:logger:2.1.1',
+            "litepal"               : 'org.litepal.android:core:2.0.0',
             "fab"                   : 'com.github.clans:fab:1.6.4',
+//            implementation 'com.classic.common:multiple-status-view:1.6'
+            "multiple_status-view":'com.classic.common:multiple-status-view:1.6',
             "materialdatetimepicker": 'com.wdullaer:materialdatetimepicker:3.6.4',
+            //头条适配
             "android-autosize"      : 'me.jessyan:autosize:1.1.0',
             "spinkit"               : 'com.github.ybq:Android-SpinKit:1.2.0'
     ]
