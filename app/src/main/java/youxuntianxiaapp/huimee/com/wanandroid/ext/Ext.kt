@@ -26,6 +26,7 @@ fun loge(tag: String, content: String?) {
 fun Fragment.showToast(content: String) {
     CustomToast(this.activity?.applicationContext, content).show()
 }
+
 fun Context.showToast(content: String) {
     CustomToast(this, content).show()
 }
@@ -36,3 +37,4 @@ fun Activity.showSnackMsg(msg: String) {
     view.findViewById<TextView>(R.id.snackbar_text).setTextColor(ContextCompat.getColor(this, R.color.white))
     snackbar.show()
 }
+

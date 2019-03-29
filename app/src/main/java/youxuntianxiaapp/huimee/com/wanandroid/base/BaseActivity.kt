@@ -8,10 +8,14 @@ import android.graphics.PixelFormat
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.preference.DialogPreference
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.*
+import android.widget.ProgressBar
+import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.color.CircleView
 import com.classic.common.MultipleStatusView
 import org.greenrobot.eventbus.EventBus
@@ -21,10 +25,12 @@ import youxuntianxiaapp.huimee.com.wanandroid.R
 import youxuntianxiaapp.huimee.com.wanandroid.app.App
 import youxuntianxiaapp.huimee.com.wanandroid.constant.Constant
 import youxuntianxiaapp.huimee.com.wanandroid.event.NetworkChangeEvent
+import youxuntianxiaapp.huimee.com.wanandroid.ext.showToast
 import youxuntianxiaapp.huimee.com.wanandroid.receiver.NetworkChangeReceiver
 import youxuntianxiaapp.huimee.com.wanandroid.utils.*
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), IView {
+
     /**
      * check login
      */
@@ -54,6 +60,9 @@ abstract class BaseActivity : AppCompatActivity() {
     protected lateinit var mTipView: View
     protected lateinit var mWindowManager: WindowManager
     protected lateinit var mLayoutParams: WindowManager.LayoutParams
+
+    private var mDialog: MaterialDialog? = null
+
 
     /**
      * 布局文件
@@ -87,6 +96,38 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun doReConnected() {
         start()
+    }
+
+    override fun showLoading(msg: String) {
+        if (mDialog == null) {
+            mDialog = MaterialDialog.Builder(this)
+                    .content(msg)
+                    .titleColorRes(R.color.white)
+                    .contentColor(Color.WHITE)
+                    .backgroundColorRes(R.color.alpha_black_80)//#80000000
+                    .progress(true, 0)
+                    .show()
+        }
+        mDialog?.show()
+
+    }
+
+    override fun hideLoading() {
+
+        mDialog?.dismiss()
+
+    }
+
+    override fun showDefaultMsg(msg: String) {
+        showToast(msg)
+    }
+
+    override fun showError(errorMsg: String) {
+        showToast(errorMsg)
+    }
+
+    override fun showMsg(msg: String) {
+        showToast(msg)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -175,6 +216,9 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onNetworkChangeEvent(event: NetworkChangeEvent) {
+        if (!event.isConnected) {
+            showToast(getString(R.string.network_unavailable_tip))
+        }
         hasNetwork = event.isConnected
         checkNetwork(event.isConnected)
     }

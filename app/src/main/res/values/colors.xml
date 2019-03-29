@@ -34,6 +34,8 @@
     <color name="title_black">#222222</color>
     <color name="grey_search">#FF999999</color>
 
+    <color name="alpha_black_80">#80000000</color>
+
     <color name="White">#FFFFFF</color>
     <color name="Black">#000000</color>
     <color name="Red">#f44336</color>

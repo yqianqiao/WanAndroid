@@ -1,9 +1,7 @@
 package youxuntianxiaapp.huimee.com.wanandroid.base
 
-import youxuntianxiaapp.huimee.com.wanandroid.ext.showToast
-
 @Suppress("UNCHECKED_CAST")
-abstract class BaseMvpActivity<in V : IView, P : IPresenter<V>> : BaseActivity(), IView {
+abstract class BaseMvpActivity<in V : IView, P : IPresenter<V>> : BaseActivity() {
 
     protected var mPresenter: P? = null
 
@@ -20,21 +18,6 @@ abstract class BaseMvpActivity<in V : IView, P : IPresenter<V>> : BaseActivity()
         mPresenter = null
     }
 
-    override fun showLoading() {
-    }
 
-    override fun hideLoading() {
-    }
 
-    override fun showDefaultMsg(msg: String) {
-        showToast(msg)
-    }
-
-    override fun showError(errorMsg: String) {
-        showToast(errorMsg)
-    }
-
-    override fun showMsg(msg: String) {
-        showToast(msg)
-    }
 }

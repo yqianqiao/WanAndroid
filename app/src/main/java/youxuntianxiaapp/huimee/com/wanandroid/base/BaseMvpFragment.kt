@@ -20,7 +20,7 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
         this.mPresenter = null
     }
 
-    override fun showLoading() {
+    override fun showLoading(msg: String) {
     }
 
     override fun hideLoading() {

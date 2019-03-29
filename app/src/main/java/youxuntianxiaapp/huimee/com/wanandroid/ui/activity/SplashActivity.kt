@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import kotlinx.android.synthetic.main.activity_splash.*
-import youxuntianxiaapp.huimee.com.wanandroid.MainActivity
 import youxuntianxiaapp.huimee.com.wanandroid.R
 import youxuntianxiaapp.huimee.com.wanandroid.base.BaseActivity
 import youxuntianxiaapp.huimee.com.wanandroid.ext.loge

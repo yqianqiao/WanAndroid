@@ -15,6 +15,7 @@ import youxuntianxiaapp.huimee.com.wanandroid.http.interceptor.CacheInterceptor
 import youxuntianxiaapp.huimee.com.wanandroid.http.interceptor.HeaderInterceptor
 import youxuntianxiaapp.huimee.com.wanandroid.http.interceptor.SaveCookieInterceptor
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by yx on 2019/3/28
@@ -58,7 +59,11 @@ object RetrofitHelper {
             addInterceptor(HeaderInterceptor())
             addInterceptor(SaveCookieInterceptor())
             addInterceptor(CacheInterceptor())
-            //TODO 未完成
+            cache(cache)
+            connectTimeout(HttpConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            readTimeout(HttpConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            writeTimeout(HttpConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            retryOnConnectionFailure(true)// 错误重连
         }
         return builder.build()
     }

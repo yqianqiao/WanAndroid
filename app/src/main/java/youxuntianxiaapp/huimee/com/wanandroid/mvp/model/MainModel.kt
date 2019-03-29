@@ -9,8 +9,8 @@ import youxuntianxiaapp.huimee.com.wanandroid.mvp.model.bean.HttpResult
 /**
  * Created by yx on 2019/3/28
  */
-class MainModel :BaseModel(),MainContract.Model {
-    override fun logout(): Observable<HttpResult<Any>> {
-        RetrofitHelper.service
-    }
+class MainModel : BaseModel(), MainContract.Model {
+
+    override fun logout(): Observable<HttpResult<Any>> = RetrofitHelper.service.logout()
+
 }

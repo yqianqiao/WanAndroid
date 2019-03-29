@@ -4,7 +4,7 @@ interface IView {
     /**
      * 显示加载
      */
-    fun showLoading()
+    fun showLoading(msg: String = "请稍等")
 
     /**
      * 隐藏加载

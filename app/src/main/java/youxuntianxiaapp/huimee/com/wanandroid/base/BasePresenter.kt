@@ -12,7 +12,7 @@ abstract class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleOb
     protected var mModel: M? = null
     protected var mView: V? = null
 
-    protected val isViewAttached: Boolean
+    private val isViewAttached: Boolean
         get() = mView != null
     private var mCompositeDisposable: CompositeDisposable? = null
 

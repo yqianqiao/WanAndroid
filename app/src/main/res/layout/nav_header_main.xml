@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_view_header"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_168"
+    android:background="@color/colorPrimary"
+    android:gravity="center_horizontal|bottom"
+    android:orientation="vertical">
+
+    <youxuntianxiaapp.huimee.com.wanandroid.widget.CircleImageView
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        app:borderColor="@color/white"
+        app:borderWidth="2dp"
+        app:srcCompat="@drawable/ic_account_circle_black_24dp"
+        app:type="circle" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold"
+        tools:text="@string/login" />
+
+</LinearLayout>
