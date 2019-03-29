@@ -7,7 +7,7 @@ import youxuntianxiaapp.huimee.com.wanandroid.utils.Preference
  * Created by yx on 2019/3/28
  */
 object HttpConstant {
-    const val DEFAULT_TIMEOUT = 15
+    const val DEFAULT_TIMEOUT:Long = 15
     const val SAVE_USER_LOGIN_KEY = "user/login"
     const val SAVE_USER_REGISTER_KEY = "user/register"
     //收藏

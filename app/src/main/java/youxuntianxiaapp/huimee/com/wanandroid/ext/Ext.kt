@@ -36,3 +36,5 @@ fun Activity.showSnackMsg(msg: String) {
     view.findViewById<TextView>(R.id.snackbar_text).setTextColor(ContextCompat.getColor(this, R.color.white))
     snackbar.show()
 }
+
+
