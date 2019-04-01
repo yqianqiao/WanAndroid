@@ -1,6 +1,7 @@
+@file:Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+
 package youxuntianxiaapp.huimee.com.wanandroid.constant
 
-import okhttp3.Cookie
 import youxuntianxiaapp.huimee.com.wanandroid.utils.Preference
 
 /**

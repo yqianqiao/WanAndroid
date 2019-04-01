@@ -6,6 +6,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.model.bean.Banner
+import youxuntianxiaapp.huimee.com.wanandroid.mvp.model.bean.BaseBean
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.model.bean.HttpResult
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.model.bean.LoginData
 
@@ -33,4 +34,15 @@ interface ApiService {
     @FormUrlEncoded
     fun loginWanAndroid(@Field("username") username: String,
                         @Field("password") password: String): Observable<HttpResult<LoginData>>
+
+    /**
+     * 注册
+     */
+    @POST("user/register")
+    @FormUrlEncoded
+    fun registerWanAndroid(@Field("username") username: String,
+                           @Field("password") password: String,
+                           @Field("repassword") repassword: String): Observable<HttpResult<LoginData>>
+
+
 }

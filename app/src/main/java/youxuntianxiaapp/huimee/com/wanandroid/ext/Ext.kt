@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import com.orhanobut.logger.Logger
 import youxuntianxiaapp.huimee.com.wanandroid.R
 import youxuntianxiaapp.huimee.com.wanandroid.widget.CustomToast
 
@@ -18,6 +19,10 @@ fun Any.loge(content: String?) {
 
 fun loge(tag: String, content: String?) {
     Log.e(tag, content ?: "")
+}
+
+fun Jsonloge(json: String) {
+    Logger.json(json)
 }
 
 /**
