@@ -14,18 +14,22 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import youxuntianxiaapp.huimee.com.wanandroid.R
 import youxuntianxiaapp.huimee.com.wanandroid.base.BaseMvpActivity
 import youxuntianxiaapp.huimee.com.wanandroid.constant.Constant
 import youxuntianxiaapp.huimee.com.wanandroid.event.LoginEvent
+import youxuntianxiaapp.huimee.com.wanandroid.ext.loge
 import youxuntianxiaapp.huimee.com.wanandroid.ext.showToast
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.contract.MainContract
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.presenter.MainPresenter
 import youxuntianxiaapp.huimee.com.wanandroid.ui.fragment.*
 import youxuntianxiaapp.huimee.com.wanandroid.utils.DialogUtil
 import youxuntianxiaapp.huimee.com.wanandroid.utils.Preference
+import kotlin.concurrent.thread
 
 class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
 
@@ -43,13 +47,6 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
     private var mProjectFragment: ProjectFragment? = null
     private var mWeChatFragment: WeChatFragment? = null
 
-    /**
-     * 退出登录 Dialog
-     */
-    private val mDialog by lazy {
-        DialogUtil.getWaitDialog(this@MainActivity, resources.getString(R.string.logout_ing))
-    }
-
 
     private val fragmentMap = SparseArray<Fragment>(5)
 
@@ -58,7 +55,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
             doAsync {
                 Preference.clearPreference()
                 uiThread {
-                    mDialog.visibility = View.GONE
+
                     showToast(getString(R.string.logout_success))
                     isLogin = false
                     EventBus.getDefault().post(LoginEvent(isLogin))
@@ -113,6 +110,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
             setOnClickListener {
                 if (!isLogin) {
                     startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+
                 }
             }
         }
@@ -158,8 +156,25 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
         return true
     }
 
+
     override fun start() {
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun loginEvent(event: LoginEvent) {
+        loge("loginEvent ", event.isLogin.toString() )
+        loge("loginEvent ", "名字 -》 $username" )
+        if (event.isLogin) {
+            nav_username?.text = username
+            nav_view.menu.findItem(R.id.nav_logout).isVisible = true
+            //刷新数据
+
+        } else {
+            nav_username?.text = getString(R.string.login)
+            nav_view.menu.findItem(R.id.nav_logout).isVisible = false
+            //刷新数据
+        }
     }
 
     override fun createPresenter(): MainContract.Presenter {
@@ -187,7 +202,6 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
                     R.id.nav_logout -> {
                         DialogUtil.getConfirmDialog(this, resources.getString(R.string.confirm_logout),
                                 DialogInterface.OnClickListener { _, _ ->
-                                    mDialog.visibility = View.VISIBLE
                                     mPresenter?.logout()
                                 }).show()
                     }

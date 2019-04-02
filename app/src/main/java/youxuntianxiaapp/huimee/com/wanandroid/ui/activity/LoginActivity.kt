@@ -8,6 +8,7 @@ import youxuntianxiaapp.huimee.com.wanandroid.R
 import youxuntianxiaapp.huimee.com.wanandroid.base.BaseMvpActivity
 import youxuntianxiaapp.huimee.com.wanandroid.constant.Constant
 import youxuntianxiaapp.huimee.com.wanandroid.event.LoginEvent
+import youxuntianxiaapp.huimee.com.wanandroid.ext.loge
 import youxuntianxiaapp.huimee.com.wanandroid.ext.showToast
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.contract.LoginContract
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.model.bean.LoginData
@@ -17,7 +18,7 @@ import youxuntianxiaapp.huimee.com.wanandroid.utils.Preference
 class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presenter>(), LoginContract.View, View.OnClickListener {
 
 
-    private var user: String by Preference(Constant.USERNAME_KEY, "")
+    private var user: String by Preference(Constant.USERNAME_KEY, "aaa")
 
     private var pas: String by Preference(Constant.PASSWORD_KEY, "")
 
@@ -53,21 +54,26 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btn_login -> login()
-            R.id.tv_sign_up -> startActivity(Intent(this, RegisterActivity::class.java))
+            R.id.tv_sign_up -> {
+                startActivity(Intent(this, RegisterActivity::class.java))
+                finish()
+            }
+
         }
     }
 
     private fun login() {
 
         if (validate()) {
-            mPresenter?.loginWanAndroid(username, pas)
+            mPresenter?.loginWanAndroid(username, password)
         }
     }
 
     override fun loginSuccess(data: LoginData) {
         showToast(getString(R.string.login_success))
         isLogin = true
-        user = data.username
+        loge(data.password)
+        user =data.username
         pas = data.password
         token = data.token
 

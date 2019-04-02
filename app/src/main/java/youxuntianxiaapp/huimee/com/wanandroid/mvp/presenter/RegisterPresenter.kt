@@ -1,8 +1,6 @@
 package youxuntianxiaapp.huimee.com.wanandroid.mvp.presenter
 
 import youxuntianxiaapp.huimee.com.wanandroid.base.BasePresenter
-import youxuntianxiaapp.huimee.com.wanandroid.ext.Jsonloge
-import youxuntianxiaapp.huimee.com.wanandroid.ext.loge
 import youxuntianxiaapp.huimee.com.wanandroid.ext.ss
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.contract.RegisterContract
 import youxuntianxiaapp.huimee.com.wanandroid.mvp.model.RegisterModel
@@ -16,7 +14,11 @@ class RegisterPresenter : BasePresenter<RegisterContract.Model, RegisterContract
     override fun registerWanAndroid(username: String, password: String, repassword: String) {
         mModel?.registerWanAndroid(username, password, repassword)
                 ?.ss(mModel, mView) {
-                    loge(it.toString())
+                    if (it.errorCode == 0) {
+                        mView?.registerSuccess(it.data)
+                    } else {
+                        mView?.registerFail(it.errorMsg)
+                    }
                 }
     }
 }

@@ -51,7 +51,7 @@ class Preference<T>(val name: String, private val default: T) {
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        putSharedPreferences(name, default)
+        putSharedPreferences(name, value)
     }
 
     private fun putSharedPreferences(name: String, value: T) = with(prefs.edit()) {
