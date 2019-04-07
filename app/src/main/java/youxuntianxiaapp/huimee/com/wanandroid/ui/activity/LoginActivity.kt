@@ -18,7 +18,7 @@ import youxuntianxiaapp.huimee.com.wanandroid.utils.Preference
 class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presenter>(), LoginContract.View, View.OnClickListener {
 
 
-    private var user: String by Preference(Constant.USERNAME_KEY, "aaa")
+    private var user: String by Preference(Constant.USERNAME_KEY, "")
 
     private var pas: String by Preference(Constant.PASSWORD_KEY, "")
 
@@ -73,9 +73,10 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
         showToast(getString(R.string.login_success))
         isLogin = true
         loge(data.password)
-        user =data.username
+        user = data.username
         pas = data.password
         token = data.token
+
 
         EventBus.getDefault().post(LoginEvent(true))
         finish()
